@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tool"
+       xsi:schemaLocation="http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd">
+    <bean id="properConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:locations-ref="datasourceList" p:fileEncoding="utf-8" p:order="2"
+          p:ignoreResourceNotFound="true">
+    </bean>
+    <util:list id="datasourceList">
+        <value type="org.springframework.core.io.Resource">classpath:db.properties</value>
+    </util:list>
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="${db.driverClassName} p:url=${db.url}" p:url="${db.url}"
+          p:password="${db.password}" p:initialSize="${db.initialSize}" p:maxActive="${db.maxActive}"
+          p:minIdle="${db.minIdle}}" p:maxIdle="${db.maxIdle}" p:maxWait="${db.maxWait}"
+          p:defaultAutoCommit="${db.defaultAautoCommit}"/>
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource" p:mapperLocations="mapper/*.xml"></bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:sqlSessionFactory-ref="sqlSessionFactory" p:basePackage="com.joe.mall.*.dao"></bean>
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource" p:rollbackOnCommitFailure="true"></bean>
+</beans>
