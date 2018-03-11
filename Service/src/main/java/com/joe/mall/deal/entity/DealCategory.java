@@ -1,7 +1,7 @@
 package com.joe.mall.deal.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.joe.mall.deal.framework.base.BaseEntity;
+import com.joe.mall.framework.base.entity.BaseEntity;
 import lombok.*;
 
 import java.util.Date;

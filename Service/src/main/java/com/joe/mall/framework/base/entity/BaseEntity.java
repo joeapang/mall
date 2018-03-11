@@ -1,4 +1,4 @@
-package com.joe.mall.deal.framework.base;
+package com.joe.mall.framework.base.entity;
 
 import lombok.Getter;
 import lombok.Setter;
