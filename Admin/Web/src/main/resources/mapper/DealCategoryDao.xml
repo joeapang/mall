@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.joe.mall.deal.dao.DealCategoryDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.joe.mall.deal.entity.DealCategory">
+        <id column="id" property="id"/>
+        <result column="name" property="name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="url_name" property="urlName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+        <result column="publish_status" property="publishStatus"/>
+        <result column="create_date" property="createDate"/>
+        <result column="deep" property="deep"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="router_call" property="routerCall"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `name`,
+        `url_name`,
+        `parent_id`,
+        `publish_status`,
+        `create_date`,
+        `deep`,
+        `order_num`,
+        `id`,
+        `router_call`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO deal_category (
+            `name`,
+            `url_name`,
+            `parent_id`,
+            `publish_status`,
+            `create_date`,
+            `deep`,
+            `order_num`,
+            `id`,
+            `router_call`
+        ) VALUES (
+            #{pojo.name},
+            #{pojo.urlName},
+            #{pojo.parentId},
+            #{pojo.publishStatus},
+            #{pojo.createDate},
+            #{pojo.deep},
+            #{pojo.orderNum},
+            #{pojo.id},
+            #{pojo.routerCall}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO deal_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.name!=null"> `name`,</if>
+            <if test="pojo.urlName!=null"> `url_name`,</if>
+            <if test="pojo.parentId!=null"> `parent_id`,</if>
+            <if test="pojo.publishStatus!=null"> `publish_status`,</if>
+            <if test="pojo.createDate!=null"> `create_date`,</if>
+            <if test="pojo.deep!=null"> `deep`,</if>
+            <if test="pojo.orderNum!=null"> `order_num`,</if>
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.routerCall!=null"> `router_call`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.name!=null">#{pojo.name},</if>
+            <if test="pojo.urlName!=null">#{pojo.urlName},</if>
+            <if test="pojo.parentId!=null">#{pojo.parentId},</if>
+            <if test="pojo.publishStatus!=null">#{pojo.publishStatus},</if>
+            <if test="pojo.createDate!=null">#{pojo.createDate},</if>
+            <if test="pojo.deep!=null">#{pojo.deep},</if>
+            <if test="pojo.orderNum!=null">#{pojo.orderNum},</if>
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.routerCall!=null">#{pojo.routerCall},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO deal_category (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.name},
+            #{pojo.urlName},
+            #{pojo.parentId},
+            #{pojo.publishStatus},
+            #{pojo.createDate},
+            #{pojo.deep},
+            #{pojo.orderNum},
+            #{pojo.id},
+            #{pojo.routerCall}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE deal_category
+        <set>
+            <if test="pojo.name != null"> `name` = #{pojo.name}, </if>
+            <if test="pojo.urlName != null"> `url_name` = #{pojo.urlName}, </if>
+            <if test="pojo.parentId != null"> `parent_id` = #{pojo.parentId}, </if>
+            <if test="pojo.publishStatus != null"> `publish_status` = #{pojo.publishStatus}, </if>
+            <if test="pojo.createDate != null"> `create_date` = #{pojo.createDate}, </if>
+            <if test="pojo.deep != null"> `deep` = #{pojo.deep}, </if>
+            <if test="pojo.orderNum != null"> `order_num` = #{pojo.orderNum}, </if>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.routerCall != null"> `router_call` = #{pojo.routerCall} </if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+    <select id="selectByParent" resultType="com.joe.mall.deal.entity.DealCategory"></select>
+</mapper>
+
