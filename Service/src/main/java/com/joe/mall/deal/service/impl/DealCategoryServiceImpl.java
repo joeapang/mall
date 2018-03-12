@@ -7,8 +7,11 @@ import com.joe.mall.framework.base.commons.Const;
 import com.joe.mall.framework.base.dao.BaseDao;
 import com.joe.mall.framework.base.service.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DealCategoryServiceImpl extends AbstractService<DealCategory, Long> implements DealCategoryService {
     @Autowired
@@ -22,9 +25,17 @@ public class DealCategoryServiceImpl extends AbstractService<DealCategory, Long>
     @Override
     public List<DealCategory> getCategories() {
 
-        List<DealCategory> dealCategories=getAllWithoutDeleted();
-        dealCategories.stream().filter(dealCategory -> dealCategory.getParentId()==0);
-        return null;
+        //获取所有未被删除的节点
+        List<DealCategory> dealCategories = getAllWithoutDeleted();
+        //找出根节点
+        List<DealCategory> roots = dealCategories.stream().filter(dealCategory -> dealCategory.getParentId() == 0)
+                .sorted(Comparator.comparingInt(DealCategory::getOrderNum)).collect(Collectors.toList());
+        //找到所有的子节点
+        List<DealCategory> children = dealCategories.stream().filter(dealCategory -> dealCategory.getParentId() != 0)
+                .collect(Collectors.toList());
+        //对节点结构化
+        roots.forEach(root->buildSubs(root,children));
+        return dealCategories;
     }
 
 
@@ -35,5 +46,19 @@ public class DealCategoryServiceImpl extends AbstractService<DealCategory, Long>
         return allDealCategory;
     }
 
+    /**
+     * 递归构建子分类
+     * @param parent 父节点
+     * @param subs 子节点
+     */
+    private void buildSubs(DealCategory parent,List<DealCategory> subs){
+        List<DealCategory> children= subs.stream().filter(sub->sub.getParentId()==parent.getId()).collect(Collectors.toList());
+        if(!CollectionUtils.isEmpty(children)){
+            parent.setChild(children);
+
+            children.forEach(child->buildSubs(child,subs));
+        }
+
+    }
 
 }
