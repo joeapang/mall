@@ -17,4 +17,6 @@ public interface DealCategoryDao extends BaseDao<DealCategory,Long> {
      * @return
      */
     List<DealCategory> selectByParent(@Param("parentId") Long parentId);
+
+
 }

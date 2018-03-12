@@ -4,38 +4,46 @@ import com.joe.mall.framework.base.dao.BaseDao;
 import com.joe.mall.framework.base.service.BaseService;
 
 import java.io.Serializable;
+import java.util.List;
 
-public abstract class AbstractService<T,ID extends Serializable> implements BaseService<T,ID> {
-    private BaseDao<T, ID> baseDao;
-    public void setBaseDao(BaseDao<T, ID> baseDao) {
-        this.baseDao = baseDao;
-    }
+public abstract class AbstractService<T, ID extends Serializable> implements BaseService<T, ID> {
+    public abstract BaseDao<T, ID> getDao() ;
+
     @Override
     public int deleteByPrimaryKey(ID id) {
-        return baseDao.deleteByPrimaryKey(id);
+        return getDao().deleteByPrimaryKey(id);
+    }
+    public List<T> selectByKeySelective(T record){
+        return getDao().selectByKeySelective(record);
     }
     @Override
     public int insertSelective(T record) {
-        return baseDao.insertSelective(record);
+        return getDao().insertSelective(record);
     }
+
     @Override
     public T selectByPrimaryKey(ID id) {
-        return baseDao.selectByPrimaryKey(id);
+        return getDao().selectByPrimaryKey(id);
     }
+
     @Override
     public int updateByPrimaryKeySelective(T record) {
-        return baseDao.updateByPrimaryKey(record);
+        return getDao().updateByPrimaryKey(record);
     }
-    @Override
-    public int updateByPrimaryKeyWithBLOBs(T record) {
-        return baseDao.updateByPrimaryKeyWithBLOBs(record);
-    }
+
     @Override
     public int updateByPrimaryKey(T record) {
-        return baseDao.updateByPrimaryKey(record);
+        return getDao().updateByPrimaryKey(record);
     }
+
     @Override
     public int insert(T record) {
-        return baseDao.insert(record);
+        return getDao().insert(record);
     }
+
+    @Override
+    public int insertList(List<T> list) {
+        return getDao().insertList(list);
+    }
+
 }

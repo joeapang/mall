@@ -44,7 +44,7 @@
             #{pojo.urlName},
             #{pojo.parentId},
             #{pojo.publishStatus},
-            #{pojo.createDate},
+            now(),
             #{pojo.deep},
             #{pojo.orderNum},
             #{pojo.id},
@@ -56,15 +56,15 @@
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
         INSERT INTO deal_category
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.name!=null"> `name`,</if>
-            <if test="pojo.urlName!=null"> `url_name`,</if>
-            <if test="pojo.parentId!=null"> `parent_id`,</if>
-            <if test="pojo.publishStatus!=null"> `publish_status`,</if>
-            <if test="pojo.createDate!=null"> `create_date`,</if>
-            <if test="pojo.deep!=null"> `deep`,</if>
-            <if test="pojo.orderNum!=null"> `order_num`,</if>
-            <if test="pojo.id!=null"> `id`,</if>
-            <if test="pojo.routerCall!=null"> `router_call`,</if>
+            <if test="pojo.name!=null">`name`,</if>
+            <if test="pojo.urlName!=null">`url_name`,</if>
+            <if test="pojo.parentId!=null">`parent_id`,</if>
+            <if test="pojo.publishStatus!=null">`publish_status`,</if>
+            <if test="pojo.createDate!=null">`create_date`,</if>
+            <if test="pojo.deep!=null">`deep`,</if>
+            <if test="pojo.orderNum!=null">`order_num`,</if>
+            <if test="pojo.id!=null">`id`,</if>
+            <if test="pojo.routerCall!=null">`router_call`,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -72,7 +72,10 @@
             <if test="pojo.urlName!=null">#{pojo.urlName},</if>
             <if test="pojo.parentId!=null">#{pojo.parentId},</if>
             <if test="pojo.publishStatus!=null">#{pojo.publishStatus},</if>
-            <if test="pojo.createDate!=null">#{pojo.createDate},</if>
+            <choose>
+                <when test="pojo,createDate!=null">#{pojo.createDate},</when>
+                <otherwise>now(),</otherwise>
+            </choose>
             <if test="pojo.deep!=null">#{pojo.deep},</if>
             <if test="pojo.orderNum!=null">#{pojo.orderNum},</if>
             <if test="pojo.id!=null">#{pojo.id},</if>
@@ -91,7 +94,10 @@
             #{pojo.urlName},
             #{pojo.parentId},
             #{pojo.publishStatus},
-            #{pojo.createDate},
+            <choose>
+                <when test="pojo,createDate!=null">#{pojo.createDate},</when>
+                <otherwise>now(),</otherwise>
+            </choose>
             #{pojo.deep},
             #{pojo.orderNum},
             #{pojo.id},
@@ -101,21 +107,62 @@
     </insert>
 
     <!--auto generated Code-->
-    <update id="update">
+    <update id="updateByPrimaryKeySelective">
         UPDATE deal_category
         <set>
-            <if test="pojo.name != null"> `name` = #{pojo.name}, </if>
-            <if test="pojo.urlName != null"> `url_name` = #{pojo.urlName}, </if>
-            <if test="pojo.parentId != null"> `parent_id` = #{pojo.parentId}, </if>
-            <if test="pojo.publishStatus != null"> `publish_status` = #{pojo.publishStatus}, </if>
-            <if test="pojo.createDate != null"> `create_date` = #{pojo.createDate}, </if>
-            <if test="pojo.deep != null"> `deep` = #{pojo.deep}, </if>
-            <if test="pojo.orderNum != null"> `order_num` = #{pojo.orderNum}, </if>
-            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
-            <if test="pojo.routerCall != null"> `router_call` = #{pojo.routerCall} </if>
+            <if test="pojo.name != null">`name` = #{pojo.name},</if>
+            <if test="pojo.urlName != null">`url_name` = #{pojo.urlName},</if>
+            <if test="pojo.parentId != null">`parent_id` = #{pojo.parentId},</if>
+            <if test="pojo.publishStatus != null">`publish_status` = #{pojo.publishStatus},</if>
+            <if test="pojo.createDate != null">`create_date` = #{pojo.createDate},</if>
+            <if test="pojo.deep != null">`deep` = #{pojo.deep},</if>
+            <if test="pojo.orderNum != null">`order_num` = #{pojo.orderNum},</if>
+            <if test="pojo.id != null">`id` = #{pojo.id},</if>
+            <if test="pojo.routerCall != null">`router_call` = #{pojo.routerCall}</if>
         </set>
         WHERE id = #{pojo.id}
     </update>
-    <select id="selectByParent" resultType="com.joe.mall.deal.entity.DealCategory"></select>
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKey">
+        UPDATE deal_category
+        <set>
+            `name` = #{pojo.name},
+            `url_name` = #{pojo.urlName},
+            `parent_id` = #{pojo.parentId},
+            `publish_status` = #{pojo.publishStatus},
+            `deep` = #{pojo.deep},
+            `order_num` = #{pojo.orderNum},
+            `id` = #{pojo.id},
+            `router_call` = #{pojo.routerCall}
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="AllColumnMap" parameterType="java.lang.Long">
+        SELECT
+        <include refid="all_column"/>
+        FROM deal_category
+        WHERE
+        id=#{id}
+    </select>
+    <select id="selectByKeySelective" resultMap="AllColumnMap" parameterType="com.joe.mall.deal.entity.DealCategory">
+        SELECT
+        <include refid="all_column"/>
+        FROM deal_category
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="pojo.name != null">`name` like CONCAT(CONCAT('%', #{pojo.name}),'%'),</if>
+            <if test="pojo.urlName != null">`url_name` = #{pojo.urlName},</if>
+            <if test="pojo.parentId != null">`parent_id` = #{pojo.parentId},</if>
+            <if test="pojo.publishStatus != null">`publish_status` = #{pojo.publishStatus},</if>
+            <if test="pojo.createDate != null">`create_date` = #{pojo.createDate},</if>
+            <if test="pojo.deep != null">`deep` = #{pojo.deep},</if>
+            <if test="pojo.orderNum != null">`order_num` like CONCAT(CONCAT('%',#{pojo.orderNum}),'%') ,</if>
+            <if test="pojo.id != null">`id` = #{pojo.id},</if>
+            <if test="pojo.routerCall != null">`router_call` = #{pojo.routerCall}</if>
+        </trim>
+
+    </select>
+    <select id="selectByParent" resultType="com.joe.mall.deal.entity.DealCategory">
+
+    </select>
 </mapper>
 
