@@ -161,8 +161,6 @@
         </trim>
 
     </select>
-    <select id="selectByParent" resultType="com.joe.mall.deal.entity.DealCategory">
 
-    </select>
 </mapper>
 

@@ -7,12 +7,14 @@ import com.joe.mall.framework.base.commons.Const;
 import com.joe.mall.framework.base.dao.BaseDao;
 import com.joe.mall.framework.base.service.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service("dealCategoryService")
 public class DealCategoryServiceImpl extends AbstractService<DealCategory, Long> implements DealCategoryService {
     @Autowired
     DealCategoryDao dealCategoryDao;

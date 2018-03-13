@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.joe.mall.deal.dao.DealDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.joe.mall.deal.entity.Deal">
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="deal_class" property="dealClass"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="merchant_sku" property="merchantSku"/>
+        <result column="deal_title" property="dealTitle"/>
+        <result column="deal_price" property="dealPrice"/>
+        <result column="merchant_price" property="merchantPrice"/>
+        <result column="market_price" property="marketPrice"/>
+        <result column="settlement_price_max" property="settlementPriceMax"/>
+        <result column="settlement_price" property="settlementPrice"/>
+        <result column="discount" property="discount"/>
+        <result column="bonus_points" property="bonusPoints"/>
+        <result column="deal_type" property="dealType"/>
+        <result column="image_id" property="imageId"/>
+        <result column="image_gen_path" property="imageGenPath"/>
+        <result column="deal_level" property="dealLevel"/>
+        <result column="max_purchase_count" property="maxPurchaseCount"/>
+        <result column="publish_status" property="publishStatus"/>
+        <result column="inventory_amount" property="inventoryAmount"/>
+        <result column="vendibility_amount" property="vendibilityAmount"/>
+        <result column="oos_status" property="oosStatus"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="merchant_code" property="merchantCode"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="down_shelf" property="downShelf"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="id" property="id"/>
+        <result column="router_call" property="routerCall"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `area_id`,
+        `area_name`,
+        `sku_id`,
+        `deal_class`,
+        `merchant_id`,
+        `merchant_sku`,
+        `deal_title`,
+        `deal_price`,
+        `merchant_price`,
+        `market_price`,
+        `settlement_price_max`,
+        `settlement_price`,
+        `discount`,
+        `bonus_points`,
+        `deal_type`,
+        `image_id`,
+        `image_gen_path`,
+        `deal_level`,
+        `max_purchase_count`,
+        `publish_status`,
+        `inventory_amount`,
+        `vendibility_amount`,
+        `oos_status`,
+        `start_time`,
+        `end_time`,
+        `publish_time`,
+        `merchant_code`,
+        `create_time`,
+        `update_time`,
+        `down_shelf`,
+        `category_id`,
+        `id`,
+        `router_call`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO deal (
+            `area_id`,
+            `area_name`,
+            `sku_id`,
+            `deal_class`,
+            `merchant_id`,
+            `merchant_sku`,
+            `deal_title`,
+            `deal_price`,
+            `merchant_price`,
+            `market_price`,
+            `settlement_price_max`,
+            `settlement_price`,
+            `discount`,
+            `bonus_points`,
+            `deal_type`,
+            `image_id`,
+            `image_gen_path`,
+            `deal_level`,
+            `max_purchase_count`,
+            `publish_status`,
+            `inventory_amount`,
+            `vendibility_amount`,
+            `oos_status`,
+            `start_time`,
+            `end_time`,
+            `publish_time`,
+            `merchant_code`,
+            `create_time`,
+            `update_time`,
+            `down_shelf`,
+            `category_id`,
+            `id`,
+            `router_call`
+        ) VALUES (
+            #{pojo.areaId},
+            #{pojo.areaName},
+            #{pojo.skuId},
+            #{pojo.dealClass},
+            #{pojo.merchantId},
+            #{pojo.merchantSku},
+            #{pojo.dealTitle},
+            #{pojo.dealPrice},
+            #{pojo.merchantPrice},
+            #{pojo.marketPrice},
+            #{pojo.settlementPriceMax},
+            #{pojo.settlementPrice},
+            #{pojo.discount},
+            #{pojo.bonusPoints},
+            #{pojo.dealType},
+            #{pojo.imageId},
+            #{pojo.imageGenPath},
+            #{pojo.dealLevel},
+            #{pojo.maxPurchaseCount},
+            #{pojo.publishStatus},
+            #{pojo.inventoryAmount},
+            #{pojo.vendibilityAmount},
+            #{pojo.oosStatus},
+            #{pojo.startTime},
+            #{pojo.endTime},
+            #{pojo.publishTime},
+            #{pojo.merchantCode},
+            now(),
+            now(),
+            #{pojo.downShelf},
+            #{pojo.categoryId},
+            #{pojo.id},
+            #{pojo.routerCall}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO deal
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.areaId!=null">`area_id`,</if>
+            <if test="pojo.areaName!=null">`area_name`,</if>
+            <if test="pojo.skuId!=null">`sku_id`,</if>
+            <if test="pojo.dealClass!=null">`deal_class`,</if>
+            <if test="pojo.merchantId!=null">`merchant_id`,</if>
+            <if test="pojo.merchantSku!=null">`merchant_sku`,</if>
+            <if test="pojo.dealTitle!=null">`deal_title`,</if>
+            <if test="pojo.dealPrice!=null">`deal_price`,</if>
+            <if test="pojo.merchantPrice!=null">`merchant_price`,</if>
+            <if test="pojo.marketPrice!=null">`market_price`,</if>
+            <if test="pojo.settlementPriceMax!=null">`settlement_price_max`,</if>
+            <if test="pojo.settlementPrice!=null">`settlement_price`,</if>
+            <if test="pojo.discount!=null">`discount`,</if>
+            <if test="pojo.bonusPoints!=null">`bonus_points`,</if>
+            <if test="pojo.dealType!=null">`deal_type`,</if>
+            <if test="pojo.imageId!=null">`image_id`,</if>
+            <if test="pojo.imageGenPath!=null">`image_gen_path`,</if>
+            <if test="pojo.dealLevel!=null">`deal_level`,</if>
+            <if test="pojo.maxPurchaseCount!=null">`max_purchase_count`,</if>
+            <if test="pojo.publishStatus!=null">`publish_status`,</if>
+            <if test="pojo.inventoryAmount!=null">`inventory_amount`,</if>
+            <if test="pojo.vendibilityAmount!=null">`vendibility_amount`,</if>
+            <if test="pojo.oosStatus!=null">`oos_status`,</if>
+            <if test="pojo.startTime!=null">`start_time`,</if>
+            <if test="pojo.endTime!=null">`end_time`,</if>
+            <if test="pojo.publishTime!=null">`publish_time`,</if>
+            <if test="pojo.merchantCode!=null">`merchant_code`,</if>
+            <if test="pojo.createTime!=null">`create_time`,</if>
+            <if test="pojo.updateTime!=null">`update_time`,</if>
+            <if test="pojo.downShelf!=null">`down_shelf`,</if>
+            <if test="pojo.categoryId!=null">`category_id`,</if>
+            <if test="pojo.id!=null">`id`,</if>
+            <if test="pojo.routerCall!=null">`router_call`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.areaId!=null">#{pojo.areaId},</if>
+            <if test="pojo.areaName!=null">#{pojo.areaName},</if>
+            <if test="pojo.skuId!=null">#{pojo.skuId},</if>
+            <if test="pojo.dealClass!=null">#{pojo.dealClass},</if>
+            <if test="pojo.merchantId!=null">#{pojo.merchantId},</if>
+            <if test="pojo.merchantSku!=null">#{pojo.merchantSku},</if>
+            <if test="pojo.dealTitle!=null">#{pojo.dealTitle},</if>
+            <if test="pojo.dealPrice!=null">#{pojo.dealPrice},</if>
+            <if test="pojo.merchantPrice!=null">#{pojo.merchantPrice},</if>
+            <if test="pojo.marketPrice!=null">#{pojo.marketPrice},</if>
+            <if test="pojo.settlementPriceMax!=null">#{pojo.settlementPriceMax},</if>
+            <if test="pojo.settlementPrice!=null">#{pojo.settlementPrice},</if>
+            <if test="pojo.discount!=null">#{pojo.discount},</if>
+            <if test="pojo.bonusPoints!=null">#{pojo.bonusPoints},</if>
+            <if test="pojo.dealType!=null">#{pojo.dealType},</if>
+            <if test="pojo.imageId!=null">#{pojo.imageId},</if>
+            <if test="pojo.imageGenPath!=null">#{pojo.imageGenPath},</if>
+            <if test="pojo.dealLevel!=null">#{pojo.dealLevel},</if>
+            <if test="pojo.maxPurchaseCount!=null">#{pojo.maxPurchaseCount},</if>
+            <if test="pojo.publishStatus!=null">#{pojo.publishStatus},</if>
+            <if test="pojo.inventoryAmount!=null">#{pojo.inventoryAmount},</if>
+            <if test="pojo.vendibilityAmount!=null">#{pojo.vendibilityAmount},</if>
+            <if test="pojo.oosStatus!=null">#{pojo.oosStatus},</if>
+            <if test="pojo.startTime!=null">#{pojo.startTime},</if>
+            <if test="pojo.endTime!=null">#{pojo.endTime},</if>
+            <if test="pojo.publishTime!=null">#{pojo.publishTime},</if>
+            <if test="pojo.merchantCode!=null">#{pojo.merchantCode},</if>
+            now(),
+            now(),
+            <if test="pojo.downShelf!=null">#{pojo.downShelf},</if>
+            <if test="pojo.categoryId!=null">#{pojo.categoryId},</if>
+            <if test="pojo.id!=null">#{pojo.id},</if>
+            <if test="pojo.routerCall!=null">#{pojo.routerCall},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO deal (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.areaId},
+            #{pojo.areaName},
+            #{pojo.skuId},
+            #{pojo.dealClass},
+            #{pojo.merchantId},
+            #{pojo.merchantSku},
+            #{pojo.dealTitle},
+            #{pojo.dealPrice},
+            #{pojo.merchantPrice},
+            #{pojo.marketPrice},
+            #{pojo.settlementPriceMax},
+            #{pojo.settlementPrice},
+            #{pojo.discount},
+            #{pojo.bonusPoints},
+            #{pojo.dealType},
+            #{pojo.imageId},
+            #{pojo.imageGenPath},
+            #{pojo.dealLevel},
+            #{pojo.maxPurchaseCount},
+            #{pojo.publishStatus},
+            #{pojo.inventoryAmount},
+            #{pojo.vendibilityAmount},
+            #{pojo.oosStatus},
+            #{pojo.startTime},
+            #{pojo.endTime},
+            #{pojo.publishTime},
+            #{pojo.merchantCode},
+            now(),
+            now(),
+            #{pojo.downShelf},
+            #{pojo.categoryId},
+            #{pojo.id},
+            #{pojo.routerCall}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKeySelective">
+        UPDATE deal
+        <set>
+            <if test="pojo.areaId != null">`area_id` = #{pojo.areaId},</if>
+            <if test="pojo.areaName != null">`area_name` = #{pojo.areaName},</if>
+            <if test="pojo.skuId != null">`sku_id` = #{pojo.skuId},</if>
+            <if test="pojo.dealClass != null">`deal_class` = #{pojo.dealClass},</if>
+            <if test="pojo.merchantId != null">`merchant_id` = #{pojo.merchantId},</if>
+            <if test="pojo.merchantSku != null">`merchant_sku` = #{pojo.merchantSku},</if>
+            <if test="pojo.dealTitle != null">`deal_title` = #{pojo.dealTitle},</if>
+            <if test="pojo.dealPrice != null">`deal_price` = #{pojo.dealPrice},</if>
+            <if test="pojo.merchantPrice != null">`merchant_price` = #{pojo.merchantPrice},</if>
+            <if test="pojo.marketPrice != null">`market_price` = #{pojo.marketPrice},</if>
+            <if test="pojo.settlementPriceMax != null">`settlement_price_max` = #{pojo.settlementPriceMax},</if>
+            <if test="pojo.settlementPrice != null">`settlement_price` = #{pojo.settlementPrice},</if>
+            <if test="pojo.discount != null">`discount` = #{pojo.discount},</if>
+            <if test="pojo.bonusPoints != null">`bonus_points` = #{pojo.bonusPoints},</if>
+            <if test="pojo.dealType != null">`deal_type` = #{pojo.dealType},</if>
+            <if test="pojo.imageId != null">`image_id` = #{pojo.imageId},</if>
+            <if test="pojo.imageGenPath != null">`image_gen_path` = #{pojo.imageGenPath},</if>
+            <if test="pojo.dealLevel != null">`deal_level` = #{pojo.dealLevel},</if>
+            <if test="pojo.maxPurchaseCount != null">`max_purchase_count` = #{pojo.maxPurchaseCount},</if>
+            <if test="pojo.publishStatus != null">`publish_status` = #{pojo.publishStatus},</if>
+            <if test="pojo.inventoryAmount != null">`inventory_amount` = #{pojo.inventoryAmount},</if>
+            <if test="pojo.vendibilityAmount != null">`vendibility_amount` = #{pojo.vendibilityAmount},</if>
+            <if test="pojo.oosStatus != null">`oos_status` = #{pojo.oosStatus},</if>
+            <if test="pojo.startTime != null">`start_time` = #{pojo.startTime},</if>
+            <if test="pojo.endTime != null">`end_time` = #{pojo.endTime},</if>
+            <if test="pojo.publishTime != null">`publish_time` = #{pojo.publishTime},</if>
+            <if test="pojo.merchantCode != null">`merchant_code` = #{pojo.merchantCode},</if>
+            <if test="pojo.createTime != null">`create_time` = #{pojo.createTime},</if>
+            <if test="pojo.updateTime != null">`update_time` = #{pojo.updateTime},</if>
+            <if test="pojo.downShelf != null">`down_shelf` = #{pojo.downShelf},</if>
+            <if test="pojo.categoryId != null">`category_id` = #{pojo.categoryId},</if>
+            <if test="pojo.id != null">`id` = #{pojo.id},</if>
+            <if test="pojo.routerCall != null">`router_call` = #{pojo.routerCall}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+    <update id="updateByPrimaryKey">
+        UPDATE deal
+        <set>
+            `area_id` = #{pojo.areaId},
+            `area_name` = #{pojo.areaName},
+            `sku_id` = #{pojo.skuId},
+            `deal_class` = #{pojo.dealClass},
+            `merchant_id` = #{pojo.merchantId},
+            `merchant_sku` = #{pojo.merchantSku},
+            `deal_title` = #{pojo.dealTitle},
+            `deal_price` = #{pojo.dealPrice},
+            `merchant_price` = #{pojo.merchantPrice},
+            `market_price` = #{pojo.marketPrice},
+            `settlement_price_max` = #{pojo.settlementPriceMax},
+            `settlement_price` = #{pojo.settlementPrice},
+            `discount` = #{pojo.discount},
+            `bonus_points` = #{pojo.bonusPoints},
+            `deal_type` = #{pojo.dealType},
+            `image_id` = #{pojo.imageId},
+            `image_gen_path` = #{pojo.imageGenPath},
+            `deal_level` = #{pojo.dealLevel},
+            `max_purchase_count` = #{pojo.maxPurchaseCount},
+            `publish_status` = #{pojo.publishStatus},
+            `inventory_amount` = #{pojo.inventoryAmount},
+            `vendibility_amount` = #{pojo.vendibilityAmount},
+            `oos_status` = #{pojo.oosStatus},
+            `start_time` = #{pojo.startTime},
+            `end_time` = #{pojo.endTime},
+            `publish_time` = #{pojo.publishTime},
+            `merchant_code` = #{pojo.merchantCode},
+            <if test="pojo.createTime!=null">`create_time` = #{pojo.createTime},</if>
+            `updateTime`=now(),
+            `down_shelf` = #{pojo.downShelf},
+            `category_id` = #{pojo.categoryId},
+            `id` = #{pojo.id},
+            `router_call` = #{pojo.routerCall}
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="AllColumnMap" parameterType="java.lang.Long">
+      SELECT
+      <include refid="all_column"/>
+        FROM
+        deal
+    </select>
+</mapper>
+
